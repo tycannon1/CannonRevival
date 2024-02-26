@@ -21,6 +21,12 @@ app.use(
   })
 );
 
+import { handlerFunctions } from "./controller.js";
+
+app.get("/api/session-check", handlerFunctions.sessionCheck);
+app.post("/api/login", handlerFunctions.login);
+app.get("/api/logout", handlerFunctions.logout);
+
 //Routes
 
 //Run the server
