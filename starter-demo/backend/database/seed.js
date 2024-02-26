@@ -38,13 +38,55 @@ let stores = [
   for (const store of stores) {
     const newStore = await Store.create(store);
     // Seed Products for each store
-    const products = [
-      { storeId: newStore.storeId, productName: 'Nike Sweats' ,brand: 'Nike', price: 19.99, description: 'Nike Sweats'},
-      { storeId: newStore.storeId, productName: 'Kappa Shirt' ,brand: 'Kappa', price: 29.99, description: 'Kappa Shirt'},
-    ];
-    await Product.bulkCreate(products);
+  //   const products = [
+  //     { storeId: newStore.storeName === 'Ricks Retro', productName: 'Nike Sweats' ,brand: 'Nike', price: 19.99, description: 'Nike Sweats'},
+  //     { storeId: newStore.storeName === 'Blue Rinse', productName: 'Kappa Shirt' ,brand: 'Kappa', price: 29.99, description: 'Kappa Shirt'},
+  //   ];
+  //   await Product.bulkCreate(products);
 
+  // }
+
+  let products = [];
+  if (newStore.storeName === 'Ricks Retro') {
+    products.push({
+      productName: 'Nike Sweats',
+      brand: 'Nike',
+      price: 19.99,
+      description: 'Nike Sweats',
+      storeId: newStore.storeId
+    },
+    {
+      productName: 'Adidas Jacket',
+      brand: 'Adidas',
+      price: 39.99,
+      description: 'Adidas Jacket',
+      storeId: newStore.storeId
+    });
+  } else if (newStore.storeName === 'Blue Rinse') {
+    products.push({
+      productName: 'Kappa Shirt',
+      brand: 'Kappa',
+      price: 29.99,
+      description: 'Kappa Shirt',
+      storeId: newStore.storeId
+    },
+    {
+      productName: 'YSL Sweater',
+      brand: 'YSL',
+      price: 140.99,
+      description: 'YSL Sweater',
+      storeId: newStore.storeId
+    },
+    {
+      productName: 'Converse Sneakers',
+      brand: 'Converse',
+      price: 29.99,
+      description: 'Converse Sneakers',
+      storeId: newStore.storeId
+    });
   }
+  await Product.bulkCreate(products);
+}
   
   // Seed Favorites
   let favorites = [
