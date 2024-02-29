@@ -1,6 +1,7 @@
 const initialState = {
     userId: null,
-    otherValue: "hello"
+    otherValue: "hello",
+    favorites: []
   };
   
   // front end components will dispatch an action object :
@@ -19,6 +20,17 @@ const initialState = {
           ...state,
           userId: null,
         };
+        case 'ADD_TO_FAVORITES':
+      return {
+        ...state,
+        favorites: [...state.favorites, action.payload],
+      };
+
+    case 'REMOVE_FROM_FAVORITES':
+      return {
+        ...state,
+        favorites: state.favorites.filter((product) => product.productId !== action.payload),
+      };
   
       default:
         return state;

@@ -7,7 +7,7 @@ import { createBrowserRouter, Route, Link, NavLink, createRoutesFromElements, Ro
 //Pages:
 import Home from './pages/Home'
 import Stores from './pages/Stores'
-import Items from './pages/Items'
+import Products from './pages/Products'
 import Profile from './pages/Profile'
 
 // layouts
@@ -18,7 +18,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<RootLayout/>}>
         <Route index element={<Home />} />
         <Route path="stores" element={<Stores />} />
-        <Route path="items" element={<Items />} />
+        <Route path="products" element={<Products />} />
         <Route path="profile" element={<Profile />} />
       </Route>
   )

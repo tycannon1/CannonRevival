@@ -85,13 +85,16 @@ let stores = [
       storeId: newStore.storeId
     });
   }
-  await Product.bulkCreate(products);
+  // await Product.bulkCreate(products);
+  for (const product of products) {
+    await Product.create(product)
+  }
 }
   
   // Seed Favorites
   let favorites = [
-    { userId: 1, productId: 1 },
-    { userId: 2, productId: 2 },
+    // { userId: 1, productId: 1 },
+    // { userId: 2, productId: 2 },
   ];
   
   for (const favorite of favorites) {

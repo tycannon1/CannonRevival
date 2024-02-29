@@ -1,4 +1,5 @@
-import { User } from '../database/model.js'
+import { User, Product, Store, Favorites } from '../database/model.js'
+
 
 export const handlerFunctions = {
   sessionCheck: async (req, res) => {
@@ -82,5 +83,109 @@ export const handlerFunctions = {
     })
     return
   },
+  getAllProducts: async (req, res) => {
+    const allProducts = await Product.findAll()
+    res.send(allProducts);
+  },
+  getAllStores: async (req, res) => {
+    const allStores = await Store.findAll()
+    res.send(allStores);
+  },
+
+  addToFavorites: async (req, res) => {
+    try {
+      const { userId, productId } = req.body;
   
+      // Check if the user exists
+      const user = await User.findOne({
+        where: {
+          userId: userId
+        }
+      });
+  
+      // Check if the product exists
+      const product = await Product.findOne({
+        where: {
+          productId: productId
+        }
+      });
+  
+      // If user or product doesn't exist, return 404
+      if (!user || !product) {
+        return res.status(404).json({ message: "User or product not found" });
+      }
+  
+      // Check if the product is already in favorites
+      const existingFavorite = await Favorites.findOne({
+        where: {
+          userId: userId,
+          productId: productId
+        }
+      });
+  
+      // If the product is already in favorites, return 400
+      if (existingFavorite) {
+        return res.status(400).json({ message: "Product already in favorites" });
+      }
+  
+      // Add the product to favorites
+      await Favorites.create({
+        userId: userId,
+        productId: productId
+      });
+  
+      // Return success message
+      return res.status(201).json({ message: "Product added to favorites" });
+    } catch (error) {
+      console.error("Error adding product to favorites:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+  },
+
+  removeFromFavorites: async (req, res) => {
+    try {
+      const { userId, productId } = req.body;
+
+        // Check if the user exists
+        const user = await User.findOne({
+          where: {
+            userId: userId
+          }
+        });
+    
+        // Check if the product exists
+        const product = await Product.findOne({
+          where: {
+            productId: productId
+          }
+        });
+
+      if (!user || !product) {
+        return res.status(404).json({ message: "User or product not found" });
+      }
+
+      // Check if the product is in favorites
+      const existingFavorite = await Favorites.findOne({
+        where: {
+          userId: userId,
+          productId: productId
+        }
+      });
+
+      if (!existingFavorite) {
+        return res.status(400).json({ message: "Product not found in favorites" });
+      }
+
+      // Remove the product from favorites
+      await existingFavorite.destroy();
+
+      return res.status(200).json({ message: "Product removed from favorites" });
+    } catch (error) {
+      console.error("Error removing product from favorites:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+  }
+  
+
+ 
 }

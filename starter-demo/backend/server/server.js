@@ -26,6 +26,10 @@ import { handlerFunctions } from "./controller.js";
 app.get("/api/session-check", handlerFunctions.sessionCheck);
 app.post("/api/login", handlerFunctions.login);
 app.get("/api/logout", handlerFunctions.logout);
+app.get("/api/products", handlerFunctions.getAllProducts)
+app.get("/api/stores", handlerFunctions.getAllStores)
+app.post("/api/add-to-favorites", handlerFunctions.addToFavorites);
+app.post("/api/remove-from-favorites", handlerFunctions.removeFromFavorites);
 
 //Routes
 
