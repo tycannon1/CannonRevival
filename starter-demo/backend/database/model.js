@@ -69,13 +69,13 @@ class SocialMedia extends Model {
   Favorites.init(
     {
       userId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      productId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    productId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     },
     {
       modelName: 'favorites',
