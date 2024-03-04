@@ -47,15 +47,17 @@ const Profile = () => {
         type: "USER_AUTH",
         payload: res.data.userId
       });
+      
     }
   }
 
   const fetchFavorites = async () => { // Function to fetch user's favorites
-    const res = await axios.get(`/api/user/${userId}/favorites`);
-    if (res.data.success) {
+    const res = await axios.get(`/api/user/favorites`);
+    console.log(res.data)
+    if (res.data[0]) {
       dispatch({
         type: "SET_FAVORITES",
-        payload: res.data.favorites
+        payload: res.data
       });
     }
   }
@@ -105,7 +107,7 @@ const Profile = () => {
       <h3>Favorites:</h3>
       <ul>
         {favorites.map(favorite => (
-          <li key={favorite.productId}>{favorite.productName}</li>
+          <li key={favorite.productId}>{favorite.product.productName}</li>
         ))}
       </ul>
     </>

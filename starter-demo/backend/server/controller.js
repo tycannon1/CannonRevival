@@ -184,7 +184,30 @@ export const handlerFunctions = {
       console.error("Error removing product from favorites:", error);
       return res.status(500).json({ message: "Internal server error" });
     }
+  },
+  // getAllFavorites: async (req, res) => {
+  //   const userId = req.params.userId;
+  //   Favorite.findAll({
+  //       where: { userId }
+  //   })
+  //   .then(favorites => {
+  //       res.send({ favorites: favorites });
+  //   });
+  // }
+  getAllFavorites: async (req, res) => {
+    if (req.session.userId){
+    let favorites = await Favorites.findAll({
+      where:{
+        userId: req.session.userId
+      },
+      include: Product
+    })
+    res.send(favorites)
+  } else {
+    res.send([])
   }
+} 
+  
   
 
  
