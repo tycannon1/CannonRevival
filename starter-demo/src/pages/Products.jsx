@@ -2,18 +2,33 @@ import Card from "../components/shopCard";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
+
+  // const dispatch = useDispatch()
 
   let cards = async () => {
     axios.get("/api/products").then((res) => {
       setProducts(res.data);
     });
   };
+
+  // const fetchFavorites = async () => { // Function to fetch user's favorites
+  //   const res = await axios.get(`/api/user/favorites`);
+  //   console.log(res.data)
+  //   if (res.data[0]) {
+  //     dispatch({
+  //       type: "SET_FAVORITES",
+  //       payload: res.data
+  //     });
+  //   }
+  // }
   
   useEffect(() => {
     cards();
+    // fetchFavorites()
   }, []);
 
   const myProducts = products.map((product) => (

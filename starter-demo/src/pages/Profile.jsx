@@ -24,6 +24,13 @@ const Profile = () => {
         type: "USER_AUTH",
         payload: res.data.userId
       });
+      // another dispatch to send the userFavorites to redux store
+      // res.data.userFavorites
+      dispatch({
+        type: "SET_FAVORITES",
+        payload: res.data.userFavorites
+      })
+
       setUsername("");
       setPassword("");
     }
@@ -40,38 +47,41 @@ const Profile = () => {
     }
   }
 
-  const sessionCheck = async () => {
-    const res = await axios.get("/api/session-check");
-    if (res.data.success) {
-      dispatch({
-        type: "USER_AUTH",
-        payload: res.data.userId
-      });
+
+
+  // const sessionCheck = async () => {
+  //   const res = await axios.get("/api/session-check");
+  //   if (res.data.success) {
+  //     dispatch({
+  //       type: "USER_AUTH",
+  //       payload: res.data.userId
+  //     });
       
-    }
-  }
+  //   }
+  // }
 
-  const fetchFavorites = async () => { // Function to fetch user's favorites
-    const res = await axios.get(`/api/user/favorites`);
-    console.log(res.data)
-    if (res.data[0]) {
-      dispatch({
-        type: "SET_FAVORITES",
-        payload: res.data
-      });
-    }
-  }
+  // const fetchFavorites = async () => { // Function to fetch user's favorites
+  //   const res = await axios.get(`/api/user/favorites`);
+  //   console.log(res.data)
+  //   if (res.data[0]) {
+  //     dispatch({
+  //       type: "SET_FAVORITES",
+  //       payload: res.data
+  //     });
+  //   }
+  // }
 
-  useEffect(() => {
-    sessionCheck();
+  // useEffect(() => {
+  //   sessionCheck();
    
-  }, []); 
+  // }, []); 
 
-  useEffect(() => {
-      fetchFavorites(); // Fetch user's favorites if user is logged in
+  // useEffect(() => {
+  //     fetchFavorites(); // Fetch user's favorites if user is logged in
     
-  }, [userId]); // Run effect whenever userId changes
+  // }, [userId]); // Run effect whenever userId changes
 
+  console.log(favorites);
 
   return (
     <>
@@ -107,8 +117,10 @@ const Profile = () => {
       <h3>Favorites:</h3>
       <ul>
         {favorites.map(favorite => (
+          // console.log(favorite.product.productName)
           <li key={favorite.productId}>{favorite.product.productName}</li>
         ))}
+        
       </ul>
     </>
   );

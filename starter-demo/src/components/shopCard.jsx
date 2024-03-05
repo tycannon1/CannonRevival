@@ -16,10 +16,10 @@ const ShopCard = ({ product }) => {
     try {
       // Send a request to the backend to add the product to favorites
       const response = await axios.post('/api/add-to-favorites', { userId, productId: product.productId });
-
+      console.log(response)
       if (response.status === 201) {
         // Dispatch an action to update the state in Redux store
-        dispatch({ type: 'ADD_TO_FAVORITES', payload: product });
+        dispatch({ type: 'ADD_TO_FAVORITES', payload: response.data });
       }
     } catch (error) {
       console.error('Error adding to favorites:', error);

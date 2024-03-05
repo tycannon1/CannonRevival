@@ -8,10 +8,20 @@ export const handlerFunctions = {
       // if you want more info about the user to return, you can just query right now with a findByPk():
       // const user = await User.findByPk(req.session.userId)
 
+      const userFavorites = await Favorites.findAll({
+        where: {
+          userId: req.session.userId
+        },
+        include: {
+          model: Product
+        }
+      })
+
       res.send({
         message: "user is still logged in",
         success: true,
-        userId: req.session.userId
+        userId: req.session.userId,
+        userFavorites: userFavorites
       })
       return
     } else { 
@@ -36,6 +46,7 @@ export const handlerFunctions = {
       }
     })
 
+    
     // need to evaluate if that worked, if not,
     // can already respond that login failed
     if (!user) {
@@ -45,7 +56,7 @@ export const handlerFunctions = {
       })
       return
     }
-
+    
     // if we're here, then the user was found
     // now evaluate if the passwords match
     if (user.password !== password) {
@@ -55,6 +66,15 @@ export const handlerFunctions = {
       })
       return
     }
+    // another query to grab the user's favorites (like in sessionCheck)
+    const userFavorites = await Favorites.findAll({
+      where: {
+        userId: user.userId
+      },
+      include: {
+        model: Product
+      }
+  })
 
     // if we're here, then the user exists 
     // AND their password was correct!
@@ -69,7 +89,8 @@ export const handlerFunctions = {
     res.send({
       message: "user logged in",
       success: true,
-      userId: req.session.userId
+      userId: req.session.userId,
+      userFavorites: userFavorites
     })
 
   },
@@ -84,7 +105,11 @@ export const handlerFunctions = {
     return
   },
   getAllProducts: async (req, res) => {
-    const allProducts = await Product.findAll()
+    const allProducts = await Product.findAll({ 
+      include: {
+        model: Favorites
+      }
+    })
     res.send(allProducts);
   },
   getAllStores: async (req, res) => {
@@ -129,13 +154,21 @@ export const handlerFunctions = {
       }
   
       // Add the product to favorites
-      await Favorites.create({
+      const addFav = await Favorites.create({
         userId: userId,
         productId: productId
       });
-  
+      console.log(addFav)
+
+      const newFav = await Favorites.findOne({
+        where:{
+          id: addFav.id
+        },
+        include:Product
+      })
       // Return success message
-      return res.status(201).json({ message: "Product added to favorites" });
+      return res.status(201).json(newFav);
+      // return res.status(201).json({ message: "Product added to favorites" });
     } catch (error) {
       console.error("Error adding product to favorites:", error);
       return res.status(500).json({ message: "Internal server error" });
