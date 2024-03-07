@@ -239,7 +239,35 @@ export const handlerFunctions = {
   } else {
     res.send([])
   }
-} 
+  },
+  signup: async (req, res) => {
+    try {
+      const { name, username, password } = req.body;
+      
+      // Check if the username already exists
+      const existingUser = await User.findOne({
+        where: {
+          username: username
+        }
+      });
+      
+      if (existingUser) {
+        return res.status(400).json({ message: "Username already exists" });
+      }
+      
+      // Create a new user
+      const newUser = await User.create({
+        name: name,
+        username: username,
+        password: password
+      });
+      
+      res.status(201).json({ message: "User created successfully" });
+    } catch (error) {
+      console.error("Error signing up user:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+  }
   
   
 

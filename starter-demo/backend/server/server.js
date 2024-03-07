@@ -5,6 +5,7 @@ import morgan from "morgan"
 import session from "express-session"
 import ViteExpress from "vite-express"
 
+
 //Create Express Instance
 const app = express()
 
@@ -30,7 +31,9 @@ app.get("/api/products", handlerFunctions.getAllProducts)
 app.get("/api/stores", handlerFunctions.getAllStores)
 app.post("/api/add-to-favorites", handlerFunctions.addToFavorites);
 app.post("/api/remove-from-favorites", handlerFunctions.removeFromFavorites);
-app.get("/api/user/favorites", handlerFunctions.getAllFavorites)
+app.get("/api/user/favorites", handlerFunctions.getAllFavorites);
+app.post("/api/signup", handlerFunctions.signup)
+
 
 //Routes
 

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearFavorites, setFavorites } from '../redux/actions.js'; // Import the action creators
+import SignupForm from '../components/SignupForm';
 
 const Profile = () => {
   const [username, setUsername] = useState('');
@@ -122,6 +123,8 @@ const Profile = () => {
         ))}
         
       </ul>
+      <h3>Sign Up</h3>
+      <SignupForm />
     </>
   );
 };
