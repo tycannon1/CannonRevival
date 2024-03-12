@@ -23,13 +23,12 @@ for (const user of users) {
 }
 
     // Seed SocialMedia
-    let socialMedia = [
-        { userId: 1, platform: 'Instagram', handle: '@ty.cannon' }, // Assuming user1's id is 1
-        { userId: 2, platform: 'TikTok', handle: '@tycannonn' },   // Assuming user2's id is 2  
-];
-for (const social of socialMedia) {
-    await SocialMedia.create(social)
-}
+//     let socialMedia = [
+        
+// ];
+// for (const social of socialMedia) {
+//     await SocialMedia.create(social)
+// }
 let stores = [
     { storeName: 'Ricks Retro' },
     { storeName: 'Blue Rinse' },

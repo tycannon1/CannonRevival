@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -11,9 +11,13 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+} */
 
-header nav {
+/* 
+  h1 {
+    margin-left: 20px; } */
+
+/* header nav {
   display: flex;
   gap: 16px;
   justify-content: end;
@@ -36,4 +40,60 @@ header nav a.active{
 main {
   max-width: 1200px;
   margin: 40px auto;
+} */
+
+.root-layout {
+  position: relative; /* Required for absolute positioning of children */
+}
+
+/* Header */
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px; /* Adjust height as needed */
+  background-color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px; /* Add padding to adjust spacing */
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Logo */
+h1 {
+  font-family: 'Ubuntu Mono', sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 48px;
+  letter-spacing: 0.08em;
+  color: #000000;
+  margin: 0; /* Remove default margin */
+}
+
+/* Navigation */
+nav {
+  font-family: 'Ubuntu Mono', sans-serif;
+  font-size: 24px; /* Adjust font size as needed */
+  font-weight: 400;
+  line-height: 48px; /* Match line height with logo for vertical alignment */
+  letter-spacing: 0.08em;
+  color: #000000;
+}
+
+nav a {
+  margin-right: 30px; /* Adjust spacing between nav items */
+  text-decoration: none;
+  color: #000000;
+}
+.gtn-logo {
+  width: 80px; /* Adjust width as needed */
+  height: 80px; /* Adjust height as needed */
+  background: url(GTNLOGO.png) no-repeat center center;
+  background-size: contain; /* Ensure the image fits within the container */
+  margin-right: 20px; /* Adjust spacing between logo and heading */
 }

@@ -45,6 +45,11 @@ class SocialMedia extends Model {
   
   SocialMedia.init(
     {
+      socialMediaId: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
       platform: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -53,6 +58,7 @@ class SocialMedia extends Model {
         type: DataTypes.STRING,
         allowNull: false,
       },
+    
     },
     {
       modelName: 'socialMedia',

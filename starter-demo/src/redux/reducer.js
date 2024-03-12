@@ -1,7 +1,7 @@
 const initialState = {
     userId: null,
-    otherValue: "hello",
-    favorites: []
+    favorites: [],
+    socialMedia: [],
   };
   
   const reducer = (state = initialState, action) => {
@@ -36,11 +36,24 @@ const initialState = {
           favorites: state.favorites.filter((product) => product.productId !== action.payload),
         };
 
-        case 'CLEAR_FAVORITES':
-          return {
-            ...state,
-            favorites: [],
-          };
+      case 'CLEAR_FAVORITES':
+        return {
+          ...state,
+          favorites: [],
+        };
+
+      case "SET_SOCIAL_MEDIA":
+        return {
+          ...state,
+          socialMedia: action.payload
+        }
+    
+      case 'ADD_TO_SOCIAL_MEDIA':
+        return {
+          ...state,
+          socialMedia: [...state.socialMedia, action.payload],
+        }
+
   
       default:
         return state;

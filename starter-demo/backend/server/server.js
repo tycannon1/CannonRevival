@@ -33,6 +33,8 @@ app.post("/api/add-to-favorites", handlerFunctions.addToFavorites);
 app.post("/api/remove-from-favorites", handlerFunctions.removeFromFavorites);
 app.get("/api/user/favorites", handlerFunctions.getAllFavorites);
 app.post("/api/signup", handlerFunctions.signup)
+app.post("/api/update-profile", handlerFunctions.updateProfile);
+app.post("/api/social-media", handlerFunctions.saveSocialMediaHandle);
 
 
 //Routes

@@ -1,4 +1,4 @@
-import { User, Product, Store, Favorites } from '../database/model.js'
+import { User, Product, Store, Favorites, SocialMedia } from '../database/model.js'
 
 
 export const handlerFunctions = {
@@ -8,20 +8,41 @@ export const handlerFunctions = {
       // if you want more info about the user to return, you can just query right now with a findByPk():
       // const user = await User.findByPk(req.session.userId)
 
-      const userFavorites = await Favorites.findAll({
-        where: {
-          userId: req.session.userId
-        },
-        include: {
-          model: Product
-        }
-      })
+      const userInSession = await User.findByPk(req.session.userId, {
+        include: [
+            {
+                model: Favorites, 
+                include: { 
+                    model: Product 
+                }
+            }, 
+            {
+                model: SocialMedia
+            }
+        ]
+    })
+
+      // const userFavorites = await Favorites.findAll({
+      //   where: {
+      //     userId: req.session.userId
+      //   },
+      //   include: {
+      //     model: Product
+      //   }
+      // })
+      // const socialMediaHandles = await SocialMedia.findAll({
+      //   where: {
+      //     userId: req.session.userId
+      //   }
+      // });
 
       res.send({
         message: "user is still logged in",
         success: true,
-        userId: req.session.userId,
-        userFavorites: userFavorites
+        user: userInSession,
+        // userId: req.session.userId,
+        // userFavorites: userFavorites,
+        // socialMediaHandles: socialMediaHandles
       })
       return
     } else { 
@@ -43,7 +64,18 @@ export const handlerFunctions = {
     const user = await User.findOne({
       where: {
         username: username
-      }
+      },
+      include: [
+        {
+            model: Favorites, 
+            include: { 
+                model: Product 
+            }
+        }, 
+        {
+            model: SocialMedia
+        }
+    ]
     })
 
     
@@ -67,14 +99,14 @@ export const handlerFunctions = {
       return
     }
     // another query to grab the user's favorites (like in sessionCheck)
-    const userFavorites = await Favorites.findAll({
-      where: {
-        userId: user.userId
-      },
-      include: {
-        model: Product
-      }
-  })
+  //   const userFavorites = await Favorites.findAll({
+  //     where: {
+  //       userId: user.userId
+  //     },
+  //     include: {
+  //       model: Product
+  //     }
+  // })
 
     // if we're here, then the user exists 
     // AND their password was correct!
@@ -89,8 +121,9 @@ export const handlerFunctions = {
     res.send({
       message: "user logged in",
       success: true,
-      userId: req.session.userId,
-      userFavorites: userFavorites
+      // userId: req.session.userId,
+      // userFavorites: userFavorites,
+      user: user
     })
 
   },
@@ -104,6 +137,8 @@ export const handlerFunctions = {
     })
     return
   },
+
+
   getAllProducts: async (req, res) => {
     const allProducts = await Product.findAll({ 
       include: {
@@ -112,6 +147,10 @@ export const handlerFunctions = {
     })
     res.send(allProducts);
   },
+
+ 
+
+
   getAllStores: async (req, res) => {
     const allStores = await Store.findAll()
     res.send(allStores);
@@ -227,6 +266,8 @@ export const handlerFunctions = {
   //       res.send({ favorites: favorites });
   //   });
   // }
+
+
   getAllFavorites: async (req, res) => {
     if (req.session.userId){
     let favorites = await Favorites.findAll({
@@ -267,7 +308,62 @@ export const handlerFunctions = {
       console.error("Error signing up user:", error);
       return res.status(500).json({ message: "Internal server error" });
     }
-  }
+  },
+  updateProfile: async (req, res) => {
+      try {
+        const { name, username, password } = req.body;
+        
+        // Check if the user is logged in
+        if (!req.session.userId) {
+          return res.status(401).json({ message: "User not authenticated" });
+        }
+  
+        // Update user information
+        const user = await User.findByPk(req.session.userId);
+        if (!user) {
+          return res.status(404).json({ message: "User not found" });
+        }
+  
+        user.name = name;
+        user.username = username;
+        if (password) {
+          user.password = password;
+        }
+  
+        await user.save();
+  
+        res.status(200).json({ message: "User information updated successfully" });
+      } catch (error) {
+        console.error("Error updating profile:", error);
+        return res.status(500).json({ message: "Internal server error" });
+      }
+    },
+    saveSocialMediaHandle: async (req, res) => {
+      try {
+        const { platform, handle } = req.body;
+        
+        // Check if the user is logged in
+        if (!req.session.userId) {
+          return res.status(401).json({ message: "User not authenticated" });
+        }
+  
+        // Save social media handle to database
+        const newHandle = await SocialMedia.create({
+          userId: req.session.userId,
+          platform,
+          handle
+        });
+  
+        res.status(201).json({ 
+          message: "Social media handle saved successfully",
+          newHandle: newHandle
+        });
+      } catch (error) {
+        console.error("Error saving social media handle:", error);
+        return res.status(500).json({ message: "Internal server error" });
+      }
+    }
+  
   
   
 

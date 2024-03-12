@@ -12,12 +12,17 @@ export default function RootLayout() {
     if (res.data.success) {
       dispatch({
         type: "USER_AUTH",
-        payload: res.data.userId
+        payload: res.data.user.userId
       });
       
       dispatch({
         type: "SET_FAVORITES",
-        payload: res.data.userFavorites
+        payload: res.data.user.favorites
+      })
+
+      dispatch({
+        type: "SET_SOCIAL_MEDIA",
+        payload: res.data.user.socialMedia
       })
     }
   }
@@ -27,11 +32,18 @@ export default function RootLayout() {
    
   }, []); 
 
+
     return (
         <div className="root-layout">
     <header>
+
+      <div  class="logo-container">
+      <img src="public/images/GTNLOGO.png" alt="GTN Logo" class="gtn-logo" />
+      <h1>Global Thrift Network</h1>
+
+      </div>
       <nav>
-        <h1>CANNON</h1>
+        
         <NavLink to="/">Home</NavLink>
         <NavLink to="stores">Stores</NavLink>
         <NavLink to="products">Products</NavLink>

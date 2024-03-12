@@ -15,16 +15,6 @@ export default function Products() {
     });
   };
 
-  // const fetchFavorites = async () => { // Function to fetch user's favorites
-  //   const res = await axios.get(`/api/user/favorites`);
-  //   console.log(res.data)
-  //   if (res.data[0]) {
-  //     dispatch({
-  //       type: "SET_FAVORITES",
-  //       payload: res.data
-  //     });
-  //   }
-  // }
   
   useEffect(() => {
     cards();
@@ -45,3 +35,4 @@ export default function Products() {
     </>
   );
 }
+
