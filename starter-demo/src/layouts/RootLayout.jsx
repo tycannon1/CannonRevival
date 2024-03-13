@@ -35,23 +35,24 @@ export default function RootLayout() {
 
     return (
         <div className="root-layout">
+          <main>
     <header>
 
       <div  class="logo-container">
       <img src="public/images/GTNLOGO.png" alt="GTN Logo" class="gtn-logo" />
-      <h1>Global Thrift Network</h1>
+      <h1>GLOBAL<br /> THRIFT<br /> NETWORK</h1>
 
       </div>
       <nav>
         
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="stores">Stores</NavLink>
-        <NavLink to="products">Products</NavLink>
-        <NavLink to="profile">Profile</NavLink>
+        <NavLink to="/">HOME</NavLink>
+        <NavLink to="stores">STORES</NavLink>
+        <NavLink to="products">PRODUCTS</NavLink>
+        <NavLink to="profile">PROFILE</NavLink>
       </nav>
      </header>
 
-     <main>
+     
         <Outlet />
      </main>
         </div>
