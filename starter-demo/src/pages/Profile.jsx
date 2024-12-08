@@ -83,15 +83,31 @@ const Profile = () => {
     }
   }
 
+  const [showSocialMediaForm, setShowSocialMediaForm] = useState(false);
+  const [showUpdateProfileForm, setShowUpdateProfileForm] = useState(false);
+  const [showSignupForm, setShowSignupForm] = useState(false);
+
+  const handleSocialMediaButtonClick = () => {
+    setShowSocialMediaForm(!showSocialMediaForm);
+  };
+
+  const handleUpdateProfileButtonClick = () => {
+    setShowUpdateProfileForm(!showUpdateProfileForm);
+  };
+
+  const handleSignupButtonClick = () => {
+    setShowSignupForm(!showSignupForm);
+  };
+
   return (
     <>
-      <nav>
+      <div class="login-container">
         <h1>PROFILE</h1>
         {userId ?
           <button onClick={handleLogout}>Logout</button> :
-          <button>Login</button>
+          <button type="button" onClick={handleLogin}>Login</button>
         }
-      </nav>
+      
       {!userId &&
         <form onSubmit={handleLogin}>
           <input 
@@ -106,42 +122,83 @@ const Profile = () => {
             placeholder='Password'
             onChange={(e) => setPassword(e.target.value)}
           />
-          <input 
+          {/* <input 
             type='submit'
-          />
+          /> */}
         </form>
       }
-      {userId && 
-        <h3>Welcome, user #{userId}</h3>
-      }
+      </div>
+      {/* {userId && 
+        <h3>Welcome, user #{userId.name}</h3>
+      } */}
     
 
 
+      <div class="content-container">
+      <h3 className='prodHead'>FAVORITES:</h3>
       
-      <h3>Favorites:</h3>
-      <ul>
-        {favorites.map(favorite => (
-          // console.log(favorite.product.productName)
-          <li key={favorite.productId}>{favorite.product.productName}</li>
-        ))}
-    
+        <ul className="prodOver">
         
-      </ul>
-      <h3>Social Media Handles: </h3>
-      <ul>
-        {socialMedia.map(handle => (
+        
+          {favorites.map(favorite => (
+            // console.log(favorite.product.productName)
+            <li key={favorite.productId}> 
+              <div className="shop-cards-container2">
+                <img src={favorite.product.imageUrl} alt={favorite.product.productName} />
+                <h3>{favorite.product.productName}</h3>
+                <p>${favorite.product.price}</p>
+                <p>{favorite.product.description}</p>
+              </div>
+          </li>
+          ))}
+      
           
-          <li key={handle.socialMediaId}>Platform: {handle.platform} Handle: {handle.handle}</li>
-        ))}
-      </ul>
+          </ul>
+          </div>
+          
+          <ul className='social-media-list'>
+          <h3>SOCIAL MEDIA HANDLES:</h3>
+            {socialMedia.map(handle => (
+              <div>
+              <li key={handle.socialMediaId}>{handle.platform}: {handle.handle}</li>
+              </div>
+            ))}
+          </ul>
+      
 
 
-      <h3>Social Media Handles:</h3>
+      {/* <h3>Social Media Handles:</h3>
       <SocialMediaForm />
       <h3>Update Profile</h3>
           <UpdateProfile />
       <h3>Sign Up</h3>
-      <SignupForm />
+      <SignupForm /> */}
+
+      
+      <div class="buttons-container">
+      {/* Social Media Form Button */}
+      <button onClick={handleSocialMediaButtonClick}>
+        {showSocialMediaForm ? 'Done' : 'Add Social Media'}
+      </button>
+      {showSocialMediaForm && <SocialMediaForm />}
+
+      {/* Update Profile Form Button */}
+      <button onClick={handleUpdateProfileButtonClick}>
+        {showUpdateProfileForm ? 'Done' : 'Update Profile'}
+      </button>
+      {showUpdateProfileForm && <UpdateProfile />}
+
+      {/* Sign Up Form Button */}
+      <button onClick={handleSignupButtonClick}>
+        {showSignupForm ? 'Done' : 'Sign Up'}
+      </button>
+      {showSignupForm && <SignupForm />}
+      </div>
+      <footer className="footer">
+        <p>&copy; 2024 Global Thrift Network</p>
+        <p><a href="mailto:info@globalthrift.com">info@globalthrift.com</a></p>
+        <p>Lehi, Utah</p>
+      </footer>
     </>
   );
 };

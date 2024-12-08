@@ -68,12 +68,28 @@ main {
   font-style: italic;
 }
 
+ul, ol {
+  list-style: none;
+}
+
 .root-layout {
   position: relative; /* Required for absolute positioning of children */
   padding-top: 200px; /* Adjust this value to match the height of your header */
   /* overflow-x: hidden; */
+}
 
+body, :root{
+  padding: 0;
+  margin: 0;
+}
 
+a {
+  color: tan;
+  text-decoration: none; /* Optionally, remove underline */
+}
+
+a:hover {
+  color: darktan; /* Change color on hover if desired */
 }
 
 
@@ -89,7 +105,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px; /* Add padding to adjust spacing */
+  padding: 0 10px; /* Add padding to adjust spacing */
 }
 .logo-container {
   display: flex;
@@ -135,12 +151,16 @@ nav a {
   text-align: center; /* Center the content horizontally */
   justify-content: center; /* Center children horizontally */
   align-items: center; /* Center children vertically */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
 
 }
 
 .banner1 {
   width: 100%; /* Ensure the image fills the entire width */
   height: auto; /* Maintain aspect ratio */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
 }
 h2{
   Font-family: 'Ubuntu Mono', sans-serif;
@@ -155,7 +175,7 @@ h2{
   font-size: 20px; /* Adjust font size as needed */
 }
 #storeInfo {
-  width: 100%; /* Ensure the image fills the entire width */
+  width: 70%; /* Ensure the image fills the entire width */
   height: auto; /* Maintain aspect ratio */
 }
 .videos-container {
@@ -174,3 +194,216 @@ h2{
   max-width: 200px; 
   /* Set maximum width for individual videos */
 }
+
+.shop-cards-container {
+  width: 250px; /* Set the width of each card */
+  margin: 20px; /* Set the margin around each card */
+  text-align: center; /* Center-align the content */
+  display: inline-block; /* Display cards in a row */
+  vertical-align: top; /* Align cards from the top */
+  font-family: 'Ubuntu Mono', sans-serif;
+  font-size: 10px; /* Adjust font size as needed */
+}
+
+.shop-cards-container img {
+  max-width: 100%; /* Ensure the image doesn't exceed the container width */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.shop-cards-container h3 {
+  margin-top: 10px; /* Add some space between image and title */
+  font-size: 18px; /* Set font size for the title */
+}
+
+.shop-cards-container p {
+  margin: 5px 0; /* Add space between paragraphs */
+}
+
+.shop-cards-container button {
+  margin-top: 10px; /* Add space between description and button */
+  padding: 5px 10px; /* Add padding to the button */
+  background-color: lightgray; /* Set button background color */
+  color: black; /* Set button text color */
+  border: none; /* Remove button border */
+  cursor: pointer; /* Add pointer cursor on hover */
+  font-family: 'Ubuntu Mono', sans-serif;
+}
+
+.shop-cards-container button:hover {
+  background-color: #F5F5F5; /* Change button background color on hover */
+}
+.prodHead{
+  width: 100%;
+  text-align: center; /* Center the content horizontally */
+  justify-content: center; /* Center children horizontally */
+  align-items: center; /* Center children vertically */
+  font-family: 'Ubuntu Mono', sans-serif;
+}
+.prodOver{
+  display: flex;
+  flex-wrap: wrap; /* Allow products to wrap */
+  justify-content: center; /* Center products horizontally */
+  gap: 20px; /* Adjust as needed for spacing between products */
+  
+
+}
+
+
+.shop-cards-container2 {
+  width: 150px; /* Set the width of each card */
+  margin: 20px; /* Set the margin around each card */
+  text-align: center; /* Center-align the content */
+  display: inline-block; /* Display cards in a row */
+  vertical-align: top; /* Align cards from the top */
+  font-family: 'Ubuntu Mono', sans-serif;
+  font-size: 10px; /* Adjust font size as needed */
+}
+
+.shop-cards-container2 img {
+  max-width: 100%; /* Ensure the image doesn't exceed the container width */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.shop-cards-container2 h3 {
+  margin-top: 10px; /* Add some space between image and title */
+  font-size: 18px; /* Set font size for the title */
+}
+
+.shop-cards-container2 p {
+  margin: 5px 0; /* Add space between paragraphs */
+}
+.login-container {
+  width: 300px; /* Adjust width as needed */
+  margin: 0 auto;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.login-container h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  
+}
+
+.login-container form {
+  margin-top: 20px;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: Tan;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Ubuntu Mono', sans-serif;
+  font-size: 14px;
+}
+
+.login-container button:hover {
+  background-color: #F5F5F5;
+}
+.social-media-list {
+  margin: 50px auto;
+  width: 80%;
+  max-width: 600px; /* Adjust max-width as needed */
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.social-media-list h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+  font-family: 'Ubuntu Mono', sans-serif;
+  font-size: 20px; /* Adjust font size as needed */
+}
+
+.social-media-list li {
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Ubuntu Mono', sans-serif;
+}
+
+.social-media-list li:last-child {
+  margin-bottom: 0;
+}
+
+.social-media-list li:hover {
+  background-color: #e9e9e9;
+}
+
+.social-media-list li div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.social-media-list li div span {
+  font-weight: bold;
+}
+
+.social-media-list li div button {
+  background-color: black;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.social-media-list li div button:hover {
+  background-color: #0056b3;
+}
+.buttons-container {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.buttons-container button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: tan;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Ubuntu Mono', sans-serif;
+}
+
+.buttons-container button:hover {
+  background-color: #F5F5F5;
+}
+.footer {
+  text-align: center;
+  margin-top: 50px;
+  background-color: white;
+  padding: 20px 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  font-family: 'Ubuntu Mono', sans-serif;
+}
+
+

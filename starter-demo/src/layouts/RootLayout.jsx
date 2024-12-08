@@ -38,7 +38,7 @@ export default function RootLayout() {
           <main>
     <header>
 
-      <div  class="logo-container">
+      <div  className="logo-container">
       <img src="public/images/GTNLOGO.png" alt="GTN Logo" class="gtn-logo" />
       <h1>GLOBAL<br /> THRIFT<br /> NETWORK</h1>
 

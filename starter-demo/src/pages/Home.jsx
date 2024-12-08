@@ -39,6 +39,11 @@ export default function Home() {
             </video>
             </div>
             </div>
+            <footer className="footer">
+        <p>&copy; 2024 Global Thrift Network</p>
+        <p><a href="mailto:info@globalthrift.com">info@globalthrift.com</a></p>
+        <p>Lehi, Utah</p>
+      </footer>
         </div>
     )
 }

@@ -42,7 +42,8 @@ const ShopCard = ({ product }) => {
   };
 
   return (
-    <div className="shop-card">
+    <div className="shop-cards-container">
+      <img src={product.imageUrl} alt={product.productName} />
       <h3>{product.productName}</h3>
       <p>Price: ${product.price}</p>
       <p>Description: {product.description}</p>

@@ -31,7 +31,7 @@ for (const user of users) {
 // }
 let stores = [
     { storeName: 'Ricks Retro' },
-    { storeName: 'Blue Rinse' },
+    { storeName: '2nd Street' },
   ];
   
   for (const store of stores) {
@@ -48,39 +48,100 @@ let stores = [
   let products = [];
   if (newStore.storeName === 'Ricks Retro') {
     products.push({
-      productName: 'Nike Sweats',
-      brand: 'Nike',
-      price: 19.99,
-      description: 'Nike Sweats',
+      productName: 'DIESEL CARGO PANTS',
+      brand: 'Diesel',
+      price: 57.00,
+      description: 'Beige, 34W X 32L',
+      imageUrl: 'public/Images/DSC_9145.webp',
       storeId: newStore.storeId
     },
     {
-      productName: 'Adidas Jacket',
-      brand: 'Adidas',
-      price: 39.99,
-      description: 'Adidas Jacket',
+      productName: 'ARCTERYX JACKET',
+      brand: 'Arcteryx',
+      price: 180.00,
+      description: 'Red, Large',
+      imageUrl: 'public/Images/DSC_2414.jpg',
+      storeId: newStore.storeId
+    },
+    {
+      productName: 'BURBERRY SHIRT',
+      brand: 'Burberry',
+      price: 128.00,
+      description: 'Medium',
+      imageUrl: 'public/Images/DSC_6131.webp',
+      storeId: newStore.storeId
+    },
+    {
+      productName: 'PATAGONIA SYNCHILLA FLEECE',
+      brand: 'PATAGONIA',
+      price: 76.00,
+      description: 'Blue, Small',
+      imageUrl: 'public/Images/DSC_0261.webp',
+      storeId: newStore.storeId
+    },
+    {
+      productName: 'CARHARTT CARGO TROUSERS',
+      brand: 'CARHARTT',
+      price: 70.00,
+      description: 'Blue, 34W, 32L',
+      imageUrl: 'public/Images/DSC_1644.webp',
+      storeId: newStore.storeId
+    },
+    {
+      productName: 'VERSACE CRUSHED VELVET JEANS',
+      brand: 'VERSACE',
+      price: 80.00,
+      description: 'Turquoise, 30W, 32L',
+      imageUrl: 'public/Images/DSC_0853.webp',
       storeId: newStore.storeId
     });
-  } else if (newStore.storeName === 'Blue Rinse') {
+  } else if (newStore.storeName === '2nd Street') {
     products.push({
-      productName: 'Kappa Shirt',
-      brand: 'Kappa',
+      productName: 'BMW FORMULA 1 RACER JACKET',
+      brand: 'BMW',
       price: 29.99,
-      description: 'Kappa Shirt',
+      description: 'Navy, XL',
+      imageUrl: 'public/Images/bmwjacket.jpg',
       storeId: newStore.storeId
     },
     {
-      productName: 'YSL Sweater',
+      productName: 'YVES SAINT LAURENT LOAFERS',
       brand: 'YSL',
-      price: 140.99,
-      description: 'YSL Sweater',
+      price: 190.00,
+      description: 'EU 40, US 7',
+      imageUrl: 'public/Images/yslloafers.webp',
       storeId: newStore.storeId
     },
     {
-      productName: 'Converse Sneakers',
-      brand: 'Converse',
-      price: 29.99,
-      description: 'Converse Sneakers',
+      productName: 'PRADA CROSS BODY',
+      brand: 'PRADA',
+      price: 250.00,
+      description: 'Black, Two Zip',
+      imageUrl: 'public/Images/pradacrossbody.webp',
+      storeId: newStore.storeId
+    },
+    {
+      productName: 'ARCTERYX PUFFER VEST',
+      brand: 'ARCTYREX',
+      price: 140.00,
+      description: 'Black Large',
+      imageUrl: 'public/Images/arcpuffer.webp',
+      storeId: newStore.storeId
+    },
+    {
+      productName: 'GOLF WANG T-SHIRT',
+      brand: 'GOLF WANG',
+      price: 20.00,
+      description: 'Yellow, Large',
+      imageUrl: 'public/Images/golfwang.webp',
+      storeId: newStore.storeId
+    },
+    {
+      productName: 'OFFWHITE SHORTS',
+      brand: 'OFFWHITE',
+      price: 90.00,
+      description: 'Grey, Large',
+      imageUrl: 'public/Images/shorts1245.png',
       storeId: newStore.storeId
     });
   }

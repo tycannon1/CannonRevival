@@ -27,11 +27,18 @@ export default function Products() {
 
   return (
     <>
-      <div className="store">
-        <h2>ITEMS!</h2>
-        <p>yeehaw</p>
+      <div className="prodHead">
+        <h2>FEATURED STORE PRODUCTS</h2>
+        <p></p>
       </div>
+      <div className="prodOver">
       {myProducts}
+      </div>
+      <footer className="footer">
+        <p>&copy; 2024 Global Thrift Network</p>
+        <p><a href="mailto:info@globalthrift.com">info@globalthrift.com</a></p>
+        <p>Lehi, Utah</p>
+      </footer>
     </>
   );
 }

@@ -142,6 +142,10 @@ class SocialMedia extends Model {
         type: DataTypes.TEXT,
         allowNull: false,
       },
+      imageUrl: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
     {
       modelName: 'product',

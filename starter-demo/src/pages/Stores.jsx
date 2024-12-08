@@ -22,7 +22,7 @@ export default function Stores() {
 
   return (
     <>
-      <div className="store">
+      <div className="stores">
         <h2>Stores!</h2>
         <p>yeehaw</p>
       </div>
